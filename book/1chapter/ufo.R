@@ -23,4 +23,9 @@ get.location<-function(l) {
 }
 
 city.state<-lapply(ufo$Location, get.location)
-head(city.state)
+
+location.matlix<-do.call(rbind, city.state)
+ufo<-transform(ufo, USCity=location.matlix[, 1], USState=tolower(location.matlix[, 2]), stringsAsFactors=FALSE)
+
+
+head(ufo)
