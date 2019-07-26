@@ -27,5 +27,14 @@ city.state<-lapply(ufo$Location, get.location)
 location.matlix<-do.call(rbind, city.state)
 ufo<-transform(ufo, USCity=location.matlix[, 1], USState=tolower(location.matlix[, 2]), stringsAsFactors=FALSE)
 
+us.states <- c("ak","al","ar","az","ca","co","ct","de","fl","ga","hi"
+              ,"ia", "id", "in", "ks","ky","la","ma","me","mi","mn","mo"
+              ,"il", "ms", "mt", "nc","nd","ne","nh","nj","nm","nv","ny"
+              ,"oh", "ok", "or", "pa","ri","sc","sd","tn","tx","ut","va"
+              ,"vt", "wa", "wi", "wv","wy")
+ufo$USState <- us.states[match(ufo$USState, us.states)]
+ufo$USCity[is.na(ufo$USState)] <- NA
+ufo.us <- subset(ufo, !is.na(USState))
 
-head(ufo)
+
+head(ufo.us)
