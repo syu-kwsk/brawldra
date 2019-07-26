@@ -1,12 +1,13 @@
 library(ggplot2)
 
-ufo <-read.delim("./data/ufo_awesome.tsv", sep="\t", stringsAsFactors=FALSE, header=FALSE, na.string="")
+ufo <-read.delim("./data/ufo_awesome.tsv", sep="\t", stringsAsFactors=FALSE, header=FALSE, na.string = "")
 
 names(ufo) <- c("DateOccured", "DateReported","Location"
                ,"ShortDescription", "Duration", "LongDescription")
                
 good.rows <- ifelse(nchar(ufo$DateOccured) != 8 | nchar(ufo$DateReported) != 8, FALSE, TRUE)
-ufo <- ufo[good.rows,]
+length(which(!good.rows))    
+ufo <- ufo[good.rows, ]
 
 ufo$DateOccured <- as.Date(ufo$DateOccured, format="%Y%m%d")
 ufo$DateOccured <- as.Date(ufo$DateReported, format="%Y%m%d")
@@ -36,5 +37,5 @@ ufo.us <- subset(ufo, !is.na(USState))
 
 #summary(ufo.us$DateOccured)
 
-quick.hist <- ggplot(ufo.us, aes(x = DateOccured))+geom_histogram()+scale_x_date(major <- "50 years")
-ggsave(plot=quick.hist, filename="../quick_hist.png",height = 6, width=8)
+quick.hist <- ggplot(ufo.us, aes(x = DateOccured)) +  geom_histogram() + scale_x_date(breaks = "50 years")
+ggsave(plot = quick.hist, filename = file.path("./data/", "quick_hist.png"), height = 6, width = 8)
