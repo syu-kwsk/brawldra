@@ -34,6 +34,8 @@ us.states <- c("ak","al","ar","az","ca","co","ct","de","fl","ga","hi"
 ufo$USState <- us.states[match(ufo$USState, us.states)]
 ufo$USCity[is.na(ufo$USState)] <- NA
 ufo.us <- subset(ufo, !is.na(USState))
+ufo.us <- subset(ufo.us, DateOccured >= as.Date("1999-01-01"))
+nrow(ufo.us)
 
 #summary(ufo.us$DateOccured)
 
