@@ -34,4 +34,8 @@ source("package_installer.R")
   + [packageのinstall](http://unageanu.hatenablog.com/entry/2016/01/09/175805)
   + [packageのinstall(2)](https://translate.google.com/translate?hl=ja&sl=en&u=https://stackoverflow.com/questions/47347272/error-installing-package-pdftools-in-r-server&prev=search)　　　　
 
-7/29　１章「Rを利用する」終了
+7/29　１章「Rを利用する」終了　　
++ Rでのデータの読み込み
++ 不要なデータのクリーニング
++ 月ごとにデータを分割
++ ヒストグラムや折れ線グラフで可視化
