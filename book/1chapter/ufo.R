@@ -1,5 +1,6 @@
 library(ggplot2)
 library(plyr)
+library(scales)
 
 ufo <-read.delim("./data/ufo_awesome.tsv", sep="\t", stringsAsFactors=FALSE, header=FALSE, na.string = "")
 
@@ -52,6 +53,18 @@ all.sightings$YearMonth <- as.Date(rep(date.range, length(us.states)))
 all.sightings$State <- as.factor(toupper(all.sightings$State))
 
 head(all.sightings)
+state.plot <- ggplot(all.sightings, aes(x = YearMonth,y = Sightings)) +
+  geom_line(aes(color = "darkblue")) +
+  facet_wrap(~State, nrow = 10, ncol = 5) + 
+  theme_bw() + 
+  scale_color_manual(values = c("darkblue" = "darkblue"), guide = "none") +
+  scale_x_date(breaks = "5 years", labels = date_format('%Y')) +
+  xlab("Years") +
+  ylab("Number of Sightings") +
+  ggtitle("Number of UFO sightings by Month-Year and U.S. State (1990-2010)")
+
+ggsave(plot = state.plot, filename="./data/ufo_sightings.png", width=14, height=8.5)
+
 
 #quick.hist <- ggplot(ufo.us, aes(x = DateOccured)) +  geom_histogram() + scale_x_date(breaks = "50 years")
 #ggsave(plot = quick.hist, filename = file.path("./data/", "quick_hist.png"), height = 6, width = 8)
