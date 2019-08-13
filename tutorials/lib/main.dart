@@ -20,3 +20,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+class RandomWordsState extends State<RandomWords> {
+  // TODO Add build() method
+}
