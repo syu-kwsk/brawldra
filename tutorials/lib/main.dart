@@ -10,6 +10,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Startup Name Generator',
+      theme: ThemeData(
+        primaryColor: Colors.red,
+      ),
       home: RandomWords(),
     );
   }
@@ -71,9 +74,9 @@ class RandomWordsState extends State<RandomWords> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Startup Name Generator'),
-        actions: <Widget>[      // Add 3 lines from here...
+        actions: <Widget>[
           IconButton(icon: Icon(Icons.list), onPressed: _pushSaved),
-        ],                      // ... to here.
+        ],
       ),
       body: _buildSuggestions(),
     );
@@ -100,12 +103,12 @@ class RandomWordsState extends State<RandomWords> {
           )
               .toList();
 
-          return Scaffold(         // Add 6 lines from here...
+          return Scaffold(
             appBar: AppBar(
               title: Text('Saved Suggestions'),
             ),
             body: ListView(children: divided),
-          );                       // ... to here.
+          );
         },
       ),
     );
